@@ -1,0 +1,140 @@
+body {
+    background-color: #cec2ae;
+    font-family: "MedievalSharp";
+    margin-top: 180px;
+    margin-left: 240px;
+    cursor: default;
+}
+
+.webpage-header {
+    position: fixed;
+    display: flex;
+    background-image: radial-gradient(circle at center, #264c5e, #246f92);
+    z-index: 100;
+    left:0px;
+    right:0px;
+    top:0px;
+    height: 180px;
+    column-gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.website-logo {
+    display: inline-block;
+    height: 150px;
+}
+
+.website-name {
+    display: inline-block;
+    font-size: 68px;
+    color: white;
+    text-align: center;
+}
+
+.webpage-sidebar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #246f92;
+    top:180px;
+    bottom:0px;
+    left:0px;
+    width:240px;
+    z-index: 99;
+    padding-top: 150px;
+}
+
+.sidebar-text {
+    font-size: 38px;
+    text-align: center;
+    width: 83%;
+    color: white;
+}
+
+.reset-statlines{
+    margin-top: 50px;
+    font-size: 28pt;
+    font-family: 'MedievalSharp';
+    background-color: #2c576b;
+    border: 8px groove white;
+    color: white;
+    cursor: pointer;
+    width: 180px;
+    padding: 5px 8px;
+}
+
+.roll-output, .statline-output, .roll-multiplier-output{
+    text-align: center;
+    font-size: 80pt;
+}
+
+.roll-output-image {
+    height: 80px;
+}
+
+.statline-output{
+    font-size: 52pt;
+    text-decoration: underline;
+    transition: opacity .15s;
+}
+
+.statline-output-wrap{
+    cursor:pointer;
+
+}
+.hidden-statlines-wrap{
+    background-color:#cab99b;
+    padding: 15px 25px;
+    align-self: center;
+    margin-left: 220px;
+    margin-right: 220px;
+    border-radius: 30px;
+}
+.d4statline-hidden-output, .d6statline-hidden-output, .d10statline-hidden-output, .d20statline-hidden-output{
+    font-size: 28pt;
+    text-align: center;
+}
+.dice-flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 25px;
+    column-gap: 40px;
+    margin-top: 280px;
+}
+
+.dice-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #cab99b;
+    border: solid 3px white;
+    width: 400px;
+    height: 400px;
+    min-width: 200px;
+    max-width: 600px;
+    transition: background-color .3s;
+    cursor: pointer;
+    border-radius: 15px;
+}
+.dice-button:hover {
+    background-color: #b8a585;
+}
+.dice-image {
+    display: inline-block;
+    width: 90%;
+    height: flex;
+    max-height: 396px;
+    min-height: 200px;
+    margin-top: 5%;
+    
+}
+.dice-label {
+    display:inline-block;
+    font-size: 28px;
+    font-weight: 700;
+}
