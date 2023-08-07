@@ -1,5 +1,5 @@
- /* Basic Function that accepts a number of sides a die has, and returns a random result of rolling it */
- function rollDie(sides) {
+/* Basic Function that accepts a number of sides a die has, and returns a random result of rolling it */
+function rollDie(sides) {
     return Math.ceil(Math.random() * sides) ;
 } ;
 
@@ -55,6 +55,7 @@ const twentySideDie = JSON.parse(localStorage.getItem('d20')) || {
     19:0,
     20:0
 };
+
 /*Pull HTML elements into JS obects*/
 const rollOutputElem = document.querySelector('.roll-output');
 const multiplierOutoutElem = document.querySelector(`.roll-multiplier-output`);
@@ -68,7 +69,7 @@ const hiddenStatlinesWrapElem = document.querySelector('.hidden-wrap');
 /*Roll functions for each die, that simulate rollNum rolls and outputs the results */
 const fourSideDieRoll = (rollNum = 1) => {
     /* Prepares an assembly string and results list */
-    assemblyString = `<img class="roll-output-image" src="images/Dice/redD4.png"/>`
+    let assemblyString = `<img class="roll-output-image" src="images/Dice/redD4.png"/>`
     let dieResults = [];
     /* Simulates dice roll, updates and saves object, and adds result to a running list rollNum times. */
     for (let i = 0; i < rollNum; i++) {
@@ -230,11 +231,6 @@ function rollMultiplier() {
     multiplierOutoutElem.innerHTML = `x${rollNum}`;
 }
 
-function clearMultiplier() {
-    multiplierOutoutElem.innerHTML = `x1`;
-    clearInterval(clearMultiplierID);
-    clearMultiplierID = null;
-}
 let rollMultiplierID, rollNum, clearMultiplierID;
 
 function clearMultiplier() {
@@ -335,3 +331,8 @@ d20ButtonElem.addEventListener('mouseleave', () => {
     if (rollMultiplierID) {
         twentySideDieRoll(rollNum);
         clearMultiplier();}})
+
+/* Add event listener to outline click */
+statlineToggleElem.addEventListener("click", () => {
+    statlineOnClick();
+})
