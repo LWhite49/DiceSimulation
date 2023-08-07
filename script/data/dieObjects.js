@@ -65,10 +65,31 @@ const d20ButtonElem = document.querySelector(`.d20-button`);
 /* Export object of objects that contains relevant info for each die, including name, number of sides, statline object, button element, and the die statline output */
 export const dieObjects = {
     d4: {
-        name:'d4',
+        name: 'd4',
         sides: '4',
         statObject: fourSideDieStatline,
         dieButton: d4ButtonElem,
         statOutput: d4hiddenStatlineElem
+    },
+    d6: {
+        name: 'd6',
+        sides: '6',
+        statObject: sixSideDieStatline,
+        dieButton: d6ButtonElem,
+        statOutput: d6hiddenStatlineElem
+    },
+    d10: {
+        name: 'd10',
+        sides: '10',
+        statObject: tenSideDieStatline,
+        dieButton: d10ButtonElem,
+        statOutput: d10hiddenStatlineElem
+    },
+    d20: {
+        name: 'd20',
+        sides: '20',
+        statObject: twentySideDieStatline,
+        dieButton: d20ButtonElem,
+        statOutput: d20hiddenStatlineElem
     }
-}
+};
