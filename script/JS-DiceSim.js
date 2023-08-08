@@ -11,6 +11,8 @@ const d10hiddenStatlineElem = document.querySelector('.d10statline-hidden-output
 const d20hiddenStatlineElem = document.querySelector('.d20statline-hidden-output');
 const hiddenStatlinesWrapElem = document.querySelector('.hidden-wrap');
 
+/* ROLL FUNCTIONS */
+
 /* Basic Function that accepts a number of sides a die has, and returns a random result of rolling it */
 function rollDie(sides) {
     return Math.ceil(Math.random() * sides) ;
@@ -19,7 +21,7 @@ function rollDie(sides) {
 /* Generate general roll function, that accepts an object in dieObjects and a rollNum, then updates statlines and outputs results */
 const dieButtonClick = (rollNum = 1, dieObject) => {
     /* Prepare an assembly string and results list */
-    let assemblyString = `<img class="roll-output-image" src="${dieObject.image}"/>`;
+    let assemblyString = `<img class="roll-output-image" src="${dieObject.image}" draggable="false"/>`;
     let dieResults = [];
     /* Simulates dice roll, update and saves object, and adds result to running list rollNum times */
     for (let i = 0; i < rollNum; i++) {
@@ -43,6 +45,10 @@ const dieButtonClick = (rollNum = 1, dieObject) => {
 }
 
 
+/* STATLINE FUNCTIONS */
+
+/* Funcion that loads statlines and changes element text if statlines are closed,
+and closes statlines and reverts element text if statlines are open */
 function statlineOnClick() {
     /* If toggle is off */
     if (statlineToggleElem.innerText === 'View Die Statlines') {
@@ -59,7 +65,7 @@ function statlineOnClick() {
         statlineToggleElem.innerHTML = 'View Die Statlines'; 
         hiddenStatlinesWrapElem.classList.remove('hidden-statlines-wrap');}
     };
-    
+
 /* Function that resets all statlines, and forces open statline */
 function resetStatlines() {
     /* Reset all die statlines to zero, then save over the existing object in local storage */
@@ -120,14 +126,23 @@ function reloadStatlines() {
     statlineToggleElem.innerHTML = 'Hide Die Statlines';
     hiddenStatlinesWrapElem.classList.add('hidden-statlines-wrap') }
 
-/* SetInterval functions and ID for multiplying roll */
+/* Add onclick listener to statline toggle elem */
+statlineToggleElem.addEventListener("click", () => {
+    statlineOnClick();
+})
+
+/* ROLL MULTIPLIER FUNCTIONS */
+
+/* Declare IntervalIDs and Multiplier variables */
+let rollMultiplierID, rollNum, clearMultiplierID;
+
+/* Function rollMultiplier is an interval that adds 1 to rollNum, and updates the display for rollNum */
 function rollMultiplier() {
     rollNum += 1;
     multiplierOutoutElem.innerHTML = `x${rollNum}`;
 }
 
-let rollMultiplierID, rollNum, clearMultiplierID;
-
+/* Function that clears all IDs assigned in event listeners */
 function clearMultiplier() {
     clearInterval(rollMultiplierID);
     clearTimeout(clearMultiplierID);
@@ -137,7 +152,9 @@ function clearMultiplier() {
     clearMultiplierID = null;
 }
 
-/* Pull die */
+/* APPLY LISTENERS TO BUTTON ELEMENTS */
+
+/* Pull die button elements to add listeners */
 const d4ButtonElem = document.querySelector(`.d4-button`);
 const d6ButtonElem = document.querySelector(`.d6-button`);
 const d10ButtonElem = document.querySelector(`.d10-button`);
@@ -149,7 +166,7 @@ d4ButtonElem.addEventListener(`mousedown`, () => {
     rollMultiplierID = setInterval(rollMultiplier, 500);
 })
 
-/* On mouseup, clear interval and pass rollNum into the parameter for d6 die roll */
+/* On mouseup, pass rollNum and dieObject into roll function, then clear multiplier info */
 d4ButtonElem.addEventListener('mouseup', () => {
     /* If roll was already processed by mouseleave, cancel listener */
     if (!rollMultiplierID) {
@@ -160,7 +177,7 @@ d4ButtonElem.addEventListener('mouseup', () => {
         clearMultiplier(); }
 })
 
-/* On mouseleave, if the setInterval is still running, run code as if the mouse unclicked */
+/* If the mouse leaves early, pass rollNum and dieObject early, then clear multiplier */
 d4ButtonElem.addEventListener('mouseleave', () => {
     if (rollMultiplierID) {
         dieButtonClick(rollNum, dieObjects['d4']);
@@ -233,8 +250,3 @@ d20ButtonElem.addEventListener('mouseleave', () => {
     if (rollMultiplierID) {
         dieButtonClick(rollNum, dieObjects['d20']);
         clearMultiplier();}})
-
-/* Add event listener to outline click */
-statlineToggleElem.addEventListener("click", () => {
-    statlineOnClick();
-})
