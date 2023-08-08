@@ -1,60 +1,9 @@
+/* Import statline objects and dieObjects from dieObjects */
+import { fourSideDieStatline, sixSideDieStatline, tenSideDieStatline, twentySideDieStatline, dieObjects } from "./data/dieObjects.js";
 /* Basic Function that accepts a number of sides a die has, and returns a random result of rolling it */
 function rollDie(sides) {
     return Math.ceil(Math.random() * sides) ;
 } ;
-
-/* Use the default operator to call the object from local storage if possible, or create default values if it cannot */
-const fourSideDie = JSON.parse(localStorage.getItem('d4')) || {
-    1:0,
-    2:0,
-    3:0,
-    4:0
-};
-
-const sixSideDie = JSON.parse(localStorage.getItem('d6')) || {
-    1:0,
-    2:0,
-    3:0,
-    4:0,
-    5:0,
-    6:0
-};
-
-const tenSideDie = JSON.parse(localStorage.getItem('d10')) || {
-    1:0,
-    2:0,
-    3:0,
-    4:0,
-    5:0,
-    6:0,
-    7:0,
-    8:0,
-    9:0,
-    10:0
-};
-
-const twentySideDie = JSON.parse(localStorage.getItem('d20')) || {
-    1:0,
-    2:0,
-    3:0,
-    4:0,
-    5:0,
-    6:0,
-    7:0,
-    8:0,
-    9:0,
-    10:0,
-    11:0,
-    12:0,
-    13:0,
-    14:0,
-    15:0,
-    16:0,
-    17:0,
-    18:0,
-    19:0,
-    20:0
-};
 
 /*Pull HTML elements into JS obects*/
 const rollOutputElem = document.querySelector('.roll-output');
@@ -69,13 +18,13 @@ const hiddenStatlinesWrapElem = document.querySelector('.hidden-wrap');
 /*Roll functions for each die, that simulate rollNum rolls and outputs the results */
 const fourSideDieRoll = (rollNum = 1) => {
     /* Prepares an assembly string and results list */
-    let assemblyString = `<img class="roll-output-image" src="images/Dice/redD4.png"/>`
+    let assemblyString = `<img class="roll-output-image" src="${dieObjects.d4.image}"/>`
     let dieResults = [];
     /* Simulates dice roll, updates and saves object, and adds result to a running list rollNum times. */
     for (let i = 0; i < rollNum; i++) {
         const d4Result = rollDie(4);
-        fourSideDie[String(d4Result)] += 1;
-        localStorage.setItem('d4', JSON.stringify(fourSideDie));
+        fourSideDieStatline[String(d4Result)] += 1;
+        localStorage.setItem('d4', JSON.stringify(fourSideDieStatline));
         dieResults.push(d4Result); }
     
     /* Sorts dieResults */
@@ -88,61 +37,61 @@ const fourSideDieRoll = (rollNum = 1) => {
     rollOutputElem.innerHTML = assemblyString.substring(0, assemblyString.length-1);
     /* If statlines are being shown, update statline */
     if (d4hiddenStatlineElem.innerHTML !== '') {
-        const d4statlineOutput = `D4 Stats: 1-${fourSideDie['1']}   2-${fourSideDie['2']}   3-${fourSideDie['3']}   4-${fourSideDie['4']}`;
+        const d4statlineOutput = `D4 Stats: 1-${fourSideDieStatline['1']}   2-${fourSideDieStatline['2']}   3-${fourSideDieStatline['3']}   4-${fourSideDieStatline['4']}`;
         d4hiddenStatlineElem.innerHTML = d4statlineOutput;
     }
 }
 
 /* Remaining dieRoll functions follow the same formate as fourSideDieRoll */
 const sixSideDieRoll = (rollNum = 1) => {
-    let assemblyString = `<img class="roll-output-image" src="images/Dice/blackD6.png" />`;
+    let assemblyString = `<img class="roll-output-image" src="${dieObjects.d6.image}" />`;
     let dieResults = [];
     for ( let i = 0; i < rollNum; i++) {
         const d6Result = rollDie(6);
-        sixSideDie[String(d6Result)] += 1;
-        localStorage.setItem('d6', JSON.stringify(sixSideDie));
+        sixSideDieStatline[String(d6Result)] += 1;
+        localStorage.setItem('d6', JSON.stringify(sixSideDieStatline));
         dieResults.push(d6Result);}
     
     dieResults.sort( (a, b) => a - b);
     dieResults.forEach( value => {assemblyString += ` ${value},`});
     rollOutputElem.innerHTML = assemblyString.substring(0, assemblyString.length - 1);
     if (d6hiddenStatlineElem.innerHTML !== '') {
-        const d6statlineOutput = `D6 Stats: 1-${sixSideDie['1']}   2-${sixSideDie['2']}   3-${sixSideDie['3']}   4-${sixSideDie['4']}   5-${sixSideDie['5']}   6-${sixSideDie['6']}`;
+        const d6statlineOutput = `D6 Stats: 1-${sixSideDieStatline['1']}   2-${sixSideDieStatline['2']}   3-${sixSideDieStatline['3']}   4-${sixSideDieStatline['4']}   5-${sixSideDieStatline['5']}   6-${sixSideDieStatline['6']}`;
         d6hiddenStatlineElem.innerHTML = d6statlineOutput;
     }
 };
 
 const tenSideDieRoll = (rollNum = 1) => {
-    let assemblyString = `<img class="roll-output-image" src="images/Dice/whiteD10.png"/>`;
+    let assemblyString = `<img class="roll-output-image" src="${dieObjects.d10.image}"/>`;
     let dieResults = [];
     for ( let i = 0; i < rollNum; i++) {
         const d10Result = rollDie(10);
-        tenSideDie[String(d10Result)] += 1;
-        localStorage.setItem('d10', JSON.stringify(tenSideDie));
+        tenSideDieStatline[String(d10Result)] += 1;
+        localStorage.setItem('d10', JSON.stringify(tenSideDieStatline));
         dieResults.push(d10Result); }
     dieResults.sort( (a, b) => a - b);
     dieResults.forEach( value => {assemblyString += ` ${value},`});
     rollOutputElem.innerHTML = assemblyString.substring(0, assemblyString.length-1);
     if (d10hiddenStatlineElem.innerHTML !== '') {
-        const d10statlineOutput = `D10 Stats: 1-${tenSideDie['1']}   2-${tenSideDie['2']}   3-${tenSideDie['3']}   4-${tenSideDie['4']}   5-${tenSideDie['5']}   6-${tenSideDie['6']}   7-${tenSideDie['7']}   8-${tenSideDie['8']}   9-${tenSideDie['9']}   10-${tenSideDie['10']}`;
+        const d10statlineOutput = `D10 Stats: 1-${tenSideDieStatline['1']}   2-${tenSideDieStatline['2']}   3-${tenSideDieStatline['3']}   4-${tenSideDieStatline['4']}   5-${tenSideDieStatline['5']}   6-${tenSideDieStatline['6']}   7-${tenSideDieStatline['7']}   8-${tenSideDieStatline['8']}   9-${tenSideDieStatline['9']}   10-${tenSideDieStatline['10']}`;
         d10hiddenStatlineElem.innerHTML = d10statlineOutput;
     }
 }
 
 const twentySideDieRoll = (rollNum = 1) => {
-    let assemblyString = `<img class="roll-output-image" src="images/Dice/purpleD20.png"/>`
+    let assemblyString = `<img class="roll-output-image" src="${dieObjects.d20.image}"/>`
     let dieResults = [];
     for (let i = 0; i < rollNum; i++) {
         const d20Result = rollDie(20);
-        twentySideDie[String(d20Result)] += 1;
-        localStorage.setItem('d20', JSON.stringify(twentySideDie));
+        twentySideDieStatline[String(d20Result)] += 1;
+        localStorage.setItem('d20', JSON.stringify(twentySideDieStatline));
         dieResults.push(d20Result);}
     dieResults.sort((a,b) => a-b);
     dieResults.forEach( value => {assemblyString += ` ${value},`});
     rollOutputElem.innerHTML = assemblyString.substring(0, assemblyString.length - 1);
     if (d20hiddenStatlineElem.innerHTML !== '') {
-        const d20statlineOutput = `D20 Stats:  1-${twentySideDie['1']}   2-${twentySideDie['2']}   3-${twentySideDie['3']}   4-${twentySideDie['4']}   5-${twentySideDie['5']}   6-${twentySideDie['6']}   7-${twentySideDie['7']}   8-${twentySideDie['8']}   9-${twentySideDie['9']}   10-${twentySideDie['10']}
-            11-${twentySideDie['11']}   12-${twentySideDie['12']}   13-${twentySideDie['13']}   14-${twentySideDie['14']}   15-${twentySideDie['15']}   16-${twentySideDie['16']}   17-${twentySideDie['17']}   18-${twentySideDie['18']}   19-${twentySideDie['19']}   20-${twentySideDie['20']}`
+        const d20statlineOutput = `D20 Stats:  1-${twentySideDieStatline['1']}   2-${twentySideDieStatline['2']}   3-${twentySideDieStatline['3']}   4-${twentySideDieStatline['4']}   5-${twentySideDieStatline['5']}   6-${twentySideDieStatline['6']}   7-${twentySideDieStatline['7']}   8-${twentySideDieStatline['8']}   9-${twentySideDieStatline['9']}   10-${twentySideDieStatline['10']}
+            11-${twentySideDieStatline['11']}   12-${twentySideDieStatline['12']}   13-${twentySideDieStatline['13']}   14-${twentySideDieStatline['14']}   15-${twentySideDieStatline['15']}   16-${twentySideDieStatline['16']}   17-${twentySideDieStatline['17']}   18-${twentySideDieStatline['18']}   19-${twentySideDieStatline['19']}   20-${twentySideDieStatline['20']}`
             d20hiddenStatlineElem.innerHTML = d20statlineOutput;
     }
 }
@@ -157,11 +106,11 @@ function statlineOnClick() {
     /* If toggle is off */
     if (statlineToggleElem.innerText === 'View Die Statlines') {
         /* Assign each statline to a unique variable for each die */
-        const d4statlineOutput = `D4 Stats: 1-${fourSideDie['1']}   2-${fourSideDie['2']}   3-${fourSideDie['3']}   4-${fourSideDie['4']}`;
-        const d6statlineOutput = `D6 Stats: 1-${sixSideDie['1']}   2-${sixSideDie['2']}   3-${sixSideDie['3']}   4-${sixSideDie['4']}   5-${sixSideDie['5']}   6-${sixSideDie['6']}`;
-        const d10statlineOutput = `D10 Stats: 1-${tenSideDie['1']}   2-${tenSideDie['2']}   3-${tenSideDie['3']}   4-${tenSideDie['4']}   5-${tenSideDie['5']}   6-${tenSideDie['6']}   7-${tenSideDie['7']}   8-${tenSideDie['8']}   9-${tenSideDie['9']}   10-${tenSideDie['10']}`;
-        const d20statlineOutput = `D20 Stats:  1-${twentySideDie['1']}   2-${twentySideDie['2']}   3-${twentySideDie['3']}   4-${twentySideDie['4']}   5-${twentySideDie['5']}   6-${twentySideDie['6']}   7-${twentySideDie['7']}   8-${twentySideDie['8']}   9-${twentySideDie['9']}   10-${twentySideDie['10']}
-            11-${twentySideDie['11']}   12-${twentySideDie['12']}   13-${twentySideDie['13']}   14-${twentySideDie['14']}   15-${twentySideDie['15']}   16-${twentySideDie['16']}   17-${twentySideDie['17']}   18-${twentySideDie['18']}   19-${twentySideDie['19']}   20-${twentySideDie['20']}`;
+        const d4statlineOutput = `D4 Stats: 1-${fourSideDieStatline['1']}   2-${fourSideDieStatline['2']}   3-${fourSideDieStatline['3']}   4-${fourSideDieStatline['4']}`;
+        const d6statlineOutput = `D6 Stats: 1-${sixSideDieStatline['1']}   2-${sixSideDieStatline['2']}   3-${sixSideDieStatline['3']}   4-${sixSideDieStatline['4']}   5-${sixSideDieStatline['5']}   6-${sixSideDieStatline['6']}`;
+        const d10statlineOutput = `D10 Stats: 1-${tenSideDieStatline['1']}   2-${tenSideDieStatline['2']}   3-${tenSideDieStatline['3']}   4-${tenSideDieStatline['4']}   5-${tenSideDieStatline['5']}   6-${tenSideDieStatline['6']}   7-${tenSideDieStatline['7']}   8-${tenSideDieStatline['8']}   9-${tenSideDieStatline['9']}   10-${tenSideDieStatline['10']}`;
+        const d20statlineOutput = `D20 Stats:  1-${twentySideDieStatline['1']}   2-${twentySideDieStatline['2']}   3-${twentySideDieStatline['3']}   4-${twentySideDieStatline['4']}   5-${twentySideDieStatline['5']}   6-${twentySideDieStatline['6']}   7-${twentySideDieStatline['7']}   8-${twentySideDieStatline['8']}   9-${twentySideDieStatline['9']}   10-${twentySideDieStatline['10']}
+            11-${twentySideDieStatline['11']}   12-${twentySideDieStatline['12']}   13-${twentySideDieStatline['13']}   14-${twentySideDieStatline['14']}   15-${twentySideDieStatline['15']}   16-${twentySideDieStatline['16']}   17-${twentySideDieStatline['17']}   18-${twentySideDieStatline['18']}   19-${twentySideDieStatline['19']}   20-${twentySideDieStatline['20']}`;
         /* Assign each HTML hidden object's contents to the statline contained in the unique variable assigned above */
         d4hiddenStatlineElem.innerHTML = d4statlineOutput;
         d6hiddenStatlineElem.innerHTML = d6statlineOutput;
@@ -185,25 +134,25 @@ function statlineOnClick() {
 function resetStatlines() {
     /* Reset all die statlines to zero, then save over the existing object in local storage */
     for (let i = 1; i < 5; i++) {
-        fourSideDie[String(i)] = 0;
+        fourSideDieStatline[String(i)] = 0;
     }
 
     for (let i = 1; i < 7; i++) {
-        sixSideDie[String(i)] = 0;
+        sixSideDieStatline[String(i)] = 0;
     }
 
     for (let i = 1; i < 11; i++) {
-        tenSideDie[String(i)] = 0;
+        tenSideDieStatline[String(i)] = 0;
     }
 
     for (let i = 1; i < 21; i++) {
-        twentySideDie[String(i)] = 0;
+        twentySideDieStatline[String(i)] = 0;
     }
 
-    localStorage.setItem('d4', JSON.stringify(fourSideDie));
-    localStorage.setItem('d6', JSON.stringify(sixSideDie));
-    localStorage.setItem('d10', JSON.stringify(tenSideDie));
-    localStorage.setItem('d20', JSON.stringify(twentySideDie));
+    localStorage.setItem('d4', JSON.stringify(fourSideDieStatline));
+    localStorage.setItem('d6', JSON.stringify(sixSideDieStatline));
+    localStorage.setItem('d10', JSON.stringify(tenSideDieStatline));
+    localStorage.setItem('d20', JSON.stringify(twentySideDieStatline));
 
     /* If statline is closed, open it */
     if (statlineToggleElem.innerText === 'View Die Statlines') {

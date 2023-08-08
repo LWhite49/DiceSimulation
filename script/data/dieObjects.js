@@ -67,6 +67,7 @@ export const dieObjects = {
     d4: {
         name: 'd4',
         sides: '4',
+        image: '../../images/Dice/redD4.png',
         statObject: fourSideDieStatline,
         dieButton: d4ButtonElem,
         statOutput: d4hiddenStatlineElem
@@ -74,6 +75,7 @@ export const dieObjects = {
     d6: {
         name: 'd6',
         sides: '6',
+        image: '../../images/Dice/blackD6.png',
         statObject: sixSideDieStatline,
         dieButton: d6ButtonElem,
         statOutput: d6hiddenStatlineElem
@@ -81,6 +83,7 @@ export const dieObjects = {
     d10: {
         name: 'd10',
         sides: '10',
+        image: '../../images/Dice/whiteD10.png',
         statObject: tenSideDieStatline,
         dieButton: d10ButtonElem,
         statOutput: d10hiddenStatlineElem
@@ -88,6 +91,7 @@ export const dieObjects = {
     d20: {
         name: 'd20',
         sides: '20',
+        image: '../../images/Dice/purpleD20.png',
         statObject: twentySideDieStatline,
         dieButton: d20ButtonElem,
         statOutput: d20hiddenStatlineElem
