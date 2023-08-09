@@ -40,7 +40,7 @@ const dieButtonClick = (rollNum = 1, dieObject) => {
     rollOutputElem.innerHTML = assemblyString.substring(0, assemblyString.length - 1);
     /* If statlines are being shown, refresh statline */
     if (dieObject.statOutput.innerHTML !== '') {
-        reloadStatlines();
+        loadStatlines();
     }
 }
 
@@ -52,7 +52,7 @@ and closes statlines and reverts element text if statlines are open */
 function statlineOnClick() {
     /* If toggle is off */
     if (statlineToggleElem.innerText === 'View Die Statlines') {
-        reloadStatlines();
+        loadStatlines();
     }
 
     /*If toggle is on*/
@@ -97,7 +97,7 @@ function resetStatlines() {
 
     /* If statline is open, refresh it */
     else if (statlineToggleElem.innerText === 'Hide Die Statlines') {
-        reloadStatlines();
+        loadStatlines();
     }
     /*Reset roll output */
     rollOutputElem.innerHTML = "N/A";
@@ -110,7 +110,7 @@ resetButtonElem.addEventListener('click', () => {
 });
 
 /* Function that refreshes the statlines, by referencing the values stored in statline objects */
-function reloadStatlines() {
+function loadStatlines() {
     /* Assign each statline to a unique variable for each die */
     const d4statlineOutput = `D4 Stats: 1-${fourSideDieStatline['1']}   2-${fourSideDieStatline['2']}   3-${fourSideDieStatline['3']}   4-${fourSideDieStatline['4']}`;
     const d6statlineOutput = `D6 Stats: 1-${sixSideDieStatline['1']}   2-${sixSideDieStatline['2']}   3-${sixSideDieStatline['3']}   4-${sixSideDieStatline['4']}   5-${sixSideDieStatline['5']}   6-${sixSideDieStatline['6']}`;
@@ -152,101 +152,56 @@ function clearMultiplier() {
     clearMultiplierID = null;
 }
 
-/* APPLY LISTENERS TO BUTTON ELEMENTS */
 
-/* Pull die button elements to add listeners */
+/* GENERATE HTML AND APPLY LISTENERS */
+
+/* Pull die button elements to add listeners, as well as output element */
 const d4ButtonElem = document.querySelector(`.d4-button`);
 const d6ButtonElem = document.querySelector(`.d6-button`);
 const d10ButtonElem = document.querySelector(`.d10-button`);
 const d20ButtonElem = document.querySelector(`.d20-button`);
+const dieFlexOutputElem = document.querySelector(`.dice-flex`);
 
-/* On mousedown, reset rollNum to 1, and run a function every half second that increases rollNum and updates roll Output */
-d4ButtonElem.addEventListener(`mousedown`, () => {
-    rollNum = 1;
-    rollMultiplierID = setInterval(rollMultiplier, 500);
-})
+/* Generate HTML using assembly string */
+let assemblyString = ``;
 
-/* On mouseup, pass rollNum and dieObject into roll function, then clear multiplier info */
-d4ButtonElem.addEventListener('mouseup', () => {
-    /* If roll was already processed by mouseleave, cancel listener */
-    if (!rollMultiplierID) {
-        return
-    }
-    else {
-        dieButtonClick(rollNum, dieObjects['d4']);
-        clearMultiplier(); }
-})
+/*Iterate die objects, adding button to assembly string */
+for (let i = 0; i < dieObjects.length; i++) {
+    const buttonObject = dieObjects[i];
+    assemblyString += `
+        <button class="dice-button ${buttonObject.name}-button">
+            <img class="dice-image" src="${buttonObject.image}" draggable="false"/>
+            <p class="dice-label">${buttonObject.name}</p>
+        </button>`;
+};
 
-/* If the mouse leaves early, pass rollNum and dieObject early, then clear multiplier */
-d4ButtonElem.addEventListener('mouseleave', () => {
-    if (rollMultiplierID) {
-        dieButtonClick(rollNum, dieObjects['d4']);
-        clearMultiplier();
-    }
-})
+/* Send assemblyString to dieFlexELem */
+dieFlexOutputElem.innerHTML = assemblyString;
 
-/* Reapply these listeners to the other die */
+/* Iterate buttons with class dice-button, adding relevant listeners */
+document.querySelectorAll('.dice-button').forEach( (button, index) => {
+    /* On mousedown, reset rollNum to 1, and run a function every half second that increases rollNum and updates roll Output */
+    button.addEventListener(`mousedown`, () => {
+        rollNum = 1;
+        rollMultiplierID = setInterval(rollMultiplier, 500);
+    });
 
-/* On mousedown, reset rollNum to 1, and run a function every half second that increases rollNum and updates roll Output */
-d6ButtonElem.addEventListener(`mousedown`, () => {
-    rollNum = 1;
-    rollMultiplierID = setInterval(rollMultiplier, 500);
-})
+    /* On mouseup, pass rollNum and dieObject into roll function, then clear multiplier info */
+    button.addEventListener('mouseup', () => {
+        /* If roll was already processed by mouseleave, cancel listener */
+        if (!rollMultiplierID) {
+            return
+        }
+        else {
+            dieButtonClick(rollNum, dieObjects[index]);
+            clearMultiplier(); }
+    });
 
-/* On mouseup, clear interval and pass rollNum into the parameter for d4die roll */
-d6ButtonElem.addEventListener('mouseup', () => {
-    if (!rollMultiplierID) {
-        return
-    }
-    else {
-        dieButtonClick(rollNum, dieObjects['d6']);
-        clearMultiplier(); }
-})
-
-/* On mouseleave, if the setInterval is still running, run code as if the mouse unclicked */
-d6ButtonElem.addEventListener('mouseleave', () => {
-    if (rollMultiplierID) {
-        dieButtonClick(rollNum, dieObjects['d6']);;
-        clearMultiplier();}
-})
-/* On mousedown, reset rollNum to 1, and run a function every half second that increases rollNum and updates roll Output */
-d10ButtonElem.addEventListener(`mousedown`, () => {
-    rollNum = 1;
-    rollMultiplierID = setInterval(rollMultiplier, 500);
-})
-
-/* On mouseup, clear interval and pass rollNum into the parameter for d10 die roll */
-d10ButtonElem.addEventListener('mouseup', () => {
-    if (!rollMultiplierID) {
-        return }
-    else {
-        dieButtonClick(rollNum, dieObjects['d10']);;
-        clearMultiplier(); }
-    })
-
-/* On mouseleave, if the setInterval is still running, run code as if the mouse unclicked */
-d10ButtonElem.addEventListener('mouseleave', () => {
-    if (rollMultiplierID) {
-        dieButtonClick(rollNum, dieObjects['d10']);
-        clearMultiplier();}})
-
-/* On mousedown, reset rollNum to 1, and run a function every half second that increases rollNum and updates roll Output */
-d20ButtonElem.addEventListener(`mousedown`, () => {
-    rollNum = 1;
-    rollMultiplierID = setInterval(rollMultiplier, 500);
-})
-
-/* On mouseup, clear interval and pass rollNum into the parameter for d20 die roll */
-d20ButtonElem.addEventListener('mouseup', () => {
-    if (!rollMultiplierID) {
-        return }
-    else {
-        dieButtonClick(rollNum, dieObjects['d20']);
-        clearMultiplier(); }
-    })
-
-/* On mouseleave, if the setInterval is still running, run code as if the mouse unclicked */
-d20ButtonElem.addEventListener('mouseleave', () => {
-    if (rollMultiplierID) {
-        dieButtonClick(rollNum, dieObjects['d20']);
-        clearMultiplier();}})
+    /* If the mouse leaves early, pass rollNum and dieObject early, then clear multiplier */
+    button.addEventListener('mouseleave', () => {
+        if (rollMultiplierID) {
+            dieButtonClick(rollNum, dieObjects[index]);
+            clearMultiplier();
+        }
+    });
+});

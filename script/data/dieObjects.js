@@ -63,8 +63,8 @@ const d10ButtonElem = document.querySelector(`.d10-button`);
 const d20ButtonElem = document.querySelector(`.d20-button`);
 
 /* Export object of objects that contains relevant info for each die, including name, number of sides, statline object, button element, and the die statline output */
-export const dieObjects = {
-    d4: {
+export const dieObjects = [
+    {
         name: 'd4',
         sides: '4',
         image: '../../images/Dice/redD4.png',
@@ -72,7 +72,7 @@ export const dieObjects = {
         dieButton: d4ButtonElem,
         statOutput: d4hiddenStatlineElem
     },
-    d6: {
+    {
         name: 'd6',
         sides: '6',
         image: '../../images/Dice/blackD6.png',
@@ -80,7 +80,7 @@ export const dieObjects = {
         dieButton: d6ButtonElem,
         statOutput: d6hiddenStatlineElem
     },
-    d10: {
+    {
         name: 'd10',
         sides: '10',
         image: '../../images/Dice/whiteD10.png',
@@ -88,7 +88,7 @@ export const dieObjects = {
         dieButton: d10ButtonElem,
         statOutput: d10hiddenStatlineElem
     },
-    d20: {
+    {
         name: 'd20',
         sides: '20',
         image: '../../images/Dice/purpleD20.png',
@@ -96,4 +96,4 @@ export const dieObjects = {
         dieButton: d20ButtonElem,
         statOutput: d20hiddenStatlineElem
     }
-};
+];
