@@ -183,7 +183,7 @@ for (let i = 0; i < dieObjects.length; i++) {
     const buttonObject = dieObjects[i];
     assemblyString += `
         <button class="dice-button ${buttonObject.name}-button">
-            <img class="dice-image" src="${buttonObject.image}" draggable="false"/>
+            <img class="dice-image ${buttonObject.name}-image" src="${buttonObject.image}" draggable="false"/>
             <p class="dice-label">${buttonObject.name}</p>
         </button>`;
 };

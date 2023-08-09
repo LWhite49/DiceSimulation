@@ -1,3 +1,4 @@
+/* Parent Styles */
 body {
     background-color: #cec2ae;
     font-family: "MedievalSharp";
@@ -6,6 +7,7 @@ body {
     cursor: default;
 }
 
+/* Header Styles */
 .webpage-header {
     position: fixed;
     display: flex;
@@ -24,6 +26,7 @@ body {
 .website-logo {
     display: inline-block;
     height: 10vh;
+    transform: translate(35%);
 }
 
 .website-name {
@@ -31,8 +34,10 @@ body {
     font-size: 8.8vh;
     color: white;
     text-align: center;
+    transform: translate(10%);
 }
 
+/* Sidebar Styles */
 .webpage-sidebar {
     position: fixed;
     display: flex;
@@ -67,6 +72,7 @@ body {
     padding: 5px 8px;
 }
 
+/* Roll Result output styles */
 .roll-output, .statline-output, .roll-multiplier-output{
     text-align: center;
     font-size: 6.4vh;
@@ -81,9 +87,10 @@ body {
 }
 
 .roll-output-image {
-    height: 80px;
+    height: 100px;
 }
 
+/* Statline output styles */
 .statline-output{
     font-size: 2vw;
     margin-top: 3.4vh;
@@ -114,14 +121,19 @@ body {
     margin-top: 1.4vh;
     margin-bottom: 1.4vh;
 }
+
+/* Dice flex styles */
 .dice-flex {
+    transform: translate(21.6%);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
-    max-width: 100%;
-    column-gap: 1.6vw;
-    padding-top: 8vh;
-    margin-bottom: 4.6vh;
+    align-items: center;
+    max-width: 70%;
+    column-gap: 1vw;
+    row-gap: 4vh;
+    padding-top: 6vh;
+    margin-bottom: 1vh;
 }
 
 .dice-button {
@@ -130,10 +142,10 @@ body {
     align-items: center;
     background-color: #cab99b;
     border: solid 3px white;
-    width: 18vw;
-    height: 18vw;
-    min-width: 175px;
-    min-height: 175px;
+    width: 12vw;
+    height: 12vw;
+    min-width: 100px;
+    min-height: 100px;
     transition: background-color .3s;
     cursor: pointer;
     border-radius: 15px;
@@ -148,15 +160,42 @@ body {
     margin-top: 5%;
     
 }
-.image-D8 {
-    width: 100%;
-    height: 100%;
-    transform: translate(-.4vw);
-}
 
 .dice-label {
     display:inline-block;
     font-size: 2.4vh;
     margin: 2vh;
     font-weight: 700;
+}
+
+/* Individual button image sizing */
+.D4-image{
+    width: 98%;
+    transform: translate(-.2vw);
+}
+
+.D6-image{
+    width:80%;
+    height:80%;
+}
+
+.D8-image{
+    width:100%;
+    height: 100%;
+    transform: translate(-.4vw);
+}
+
+.D10-image{
+    width: 70%;
+    height: 70%;
+}
+
+.D12-image{
+    width:80%;
+    height: 80%;
+}
+
+.D20-image{
+    width: 80%;
+    height: 80%;
 }
