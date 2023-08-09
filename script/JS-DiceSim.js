@@ -11,6 +11,7 @@ const d10hiddenStatlineElem = document.querySelector('.d10statline-hidden-output
 const d20hiddenStatlineElem = document.querySelector('.d20statline-hidden-output');
 const hiddenStatlinesWrapElem = document.querySelector('.hidden-wrap');
 
+
 /* ROLL FUNCTIONS */
 
 /* Basic Function that accepts a number of sides a die has, and returns a random result of rolling it */
@@ -109,19 +110,21 @@ resetButtonElem.addEventListener('click', () => {
     resetStatlines();
 });
 
-/* Function that refreshes the statlines, by referencing the values stored in statline objects */
+/* Function that refreshes the statlines, by iterating dieObjects and generating the statline */
 function loadStatlines() {
-    /* Assign each statline to a unique variable for each die */
-    const d4statlineOutput = `D4 Stats: 1-${fourSideDieStatline['1']}   2-${fourSideDieStatline['2']}   3-${fourSideDieStatline['3']}   4-${fourSideDieStatline['4']}`;
-    const d6statlineOutput = `D6 Stats: 1-${sixSideDieStatline['1']}   2-${sixSideDieStatline['2']}   3-${sixSideDieStatline['3']}   4-${sixSideDieStatline['4']}   5-${sixSideDieStatline['5']}   6-${sixSideDieStatline['6']}`;
-    const d10statlineOutput = `D10 Stats: 1-${tenSideDieStatline['1']}   2-${tenSideDieStatline['2']}   3-${tenSideDieStatline['3']}   4-${tenSideDieStatline['4']}   5-${tenSideDieStatline['5']}   6-${tenSideDieStatline['6']}   7-${tenSideDieStatline['7']}   8-${tenSideDieStatline['8']}   9-${tenSideDieStatline['9']}   10-${tenSideDieStatline['10']}`;
-    const d20statlineOutput = `D20 Stats:  1-${twentySideDieStatline['1']}   2-${twentySideDieStatline['2']}   3-${twentySideDieStatline['3']}   4-${twentySideDieStatline['4']}   5-${twentySideDieStatline['5']}   6-${twentySideDieStatline['6']}   7-${twentySideDieStatline['7']}   8-${twentySideDieStatline['8']}   9-${twentySideDieStatline['9']}   10-${twentySideDieStatline['10']}
-        11-${twentySideDieStatline['11']}   12-${twentySideDieStatline['12']}   13-${twentySideDieStatline['13']}   14-${twentySideDieStatline['14']}   15-${twentySideDieStatline['15']}   16-${twentySideDieStatline['16']}   17-${twentySideDieStatline['17']}   18-${twentySideDieStatline['18']}   19-${twentySideDieStatline['19']}   20-${twentySideDieStatline['20']}`;
-    /* Assign each HTML hidden object's contents to the statline contained in the unique variable assigned above */
-    d4hiddenStatlineElem.innerHTML = d4statlineOutput;
-    d6hiddenStatlineElem.innerHTML = d6statlineOutput;
-    d10hiddenStatlineElem.innerHTML = d10statlineOutput;
-    d20hiddenStatlineElem.innerHTML = d20statlineOutput;
+    /* Iterate dieObjects */
+    dieObjects.forEach( buttonObject => {
+        /* Start assembly string */
+        let assemblyString = `${buttonObject.name} Stats:`;
+
+        /* Loop once for each side of die, adding to assembly string */
+        for (let i = 1; i < Number(buttonObject.sides) + 1; i++) {
+            assemblyString += ` ${i}-${buttonObject.statObject[String(i)]}`;
+        };
+
+        /* Send assembly string to relevant output */
+        buttonObject.statOutput.innerHTML = assemblyString.substring(0, assemblyString.length);
+    })
     /* Change toggle text to reflect position */
     statlineToggleElem.innerHTML = 'Hide Die Statlines';
     hiddenStatlinesWrapElem.classList.add('hidden-statlines-wrap') }
