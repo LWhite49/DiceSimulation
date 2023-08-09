@@ -107,11 +107,12 @@ body {
     margin-right: 2vw;
     border-radius: 30px;
 }
-.d4statline-hidden-output, .d6statline-hidden-output, .d10statline-hidden-output, .d20statline-hidden-output{
+.d4statline-hidden-output, .d6statline-hidden-output, .d8statline-hidden-output .d10statline-hidden-output, .d20statline-hidden-output{
     font-size: 2vw;
-    text-align: center;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    text-align: left;
+    letter-spacing: .06cap;
+    margin-top: 1.4vh;
+    margin-bottom: 1.4vh;
 }
 .dice-flex {
     display: grid;
@@ -146,6 +147,15 @@ body {
     height: 90%;
     margin-top: 5%;
     
+}
+.image-D8 {
+    width: 100%;
+    height: 100%;
+    transform: translate(-.4vw);
+}
+.image-D20 {
+    width: 100%;
+    height: 100%;
 }
 .dice-label {
     display:inline-block;
