@@ -16,6 +16,17 @@ export const sixSideDieStatline = JSON.parse(localStorage.getItem('D6')) || {
     6:0
 };
 
+export const eightSideDieStatline = JSON.parse(localStorage.getItem('D8')) || {
+    1:0,
+    2:0,
+    3:0,
+    4:0,
+    5:0,
+    6:0,
+    7:0,
+    8:0
+}
+
 export const tenSideDieStatline = JSON.parse(localStorage.getItem('D10')) || {
     1:0,
     2:0,
@@ -27,6 +38,21 @@ export const tenSideDieStatline = JSON.parse(localStorage.getItem('D10')) || {
     8:0,
     9:0,
     10:0
+};
+
+export const twelveSideDieStatline = JSON.parse(localStorage.getItem('D12')) || {
+    1:0,
+    2:0,
+    3:0,
+    4:0,
+    5:0,
+    6:0,
+    7:0,
+    8:0,
+    9:0,
+    10:0,
+    11:0,
+    12:0
 };
 
 export const twentySideDieStatline = JSON.parse(localStorage.getItem('D20')) || {
@@ -55,7 +81,9 @@ export const twentySideDieStatline = JSON.parse(localStorage.getItem('D20')) || 
 /* Pull HTML objects for die buttons and die statlines */
 const d4hiddenStatlineElem = document.querySelector('.d4statline-hidden-output');
 const d6hiddenStatlineElem = document.querySelector('.d6statline-hidden-output');
+const d8hiddenStatlineElem = document.querySelector('.d8statline-hidden-output');
 const d10hiddenStatlineElem = document.querySelector('.d10statline-hidden-output');
+const d12hiddenStatlineElem = document.querySelector('.d12statline-hidden-output');
 const d20hiddenStatlineElem = document.querySelector('.d20statline-hidden-output');
 
 /* Export object of objects that contains relevant info for each die, including name, number of sides, statline object, button element, and the die statline output */
@@ -75,11 +103,25 @@ export const dieObjects = [
         statOutput: d6hiddenStatlineElem
     },
     {
+        name: 'D8',
+        sides: '8',
+        image: '../../images/Dice/blueD8.png',
+        statObject: eightSideDieStatline,
+        statOutput: d8hiddenStatlineElem
+    },
+    {
         name: 'D10',
         sides: '10',
         image: '../../images/Dice/whiteD10.png',
         statObject: tenSideDieStatline,
         statOutput: d10hiddenStatlineElem
+    },
+    {
+        name: 'D12',
+        sides: '12',
+        image: '../../images/Dice/blueD12.png',
+        statObject: twelveSideDieStatline,
+        statOutput: d12hiddenStatlineElem
     },
     {
         name: 'D20',

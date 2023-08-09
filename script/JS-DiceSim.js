@@ -1,5 +1,5 @@
 /* Import statline objects and dieObjects from dieObjects */
-import { fourSideDieStatline, sixSideDieStatline, tenSideDieStatline, twentySideDieStatline, dieObjects } from "./data/dieObjects.js";
+import { fourSideDieStatline, sixSideDieStatline, eightSideDieStatline, tenSideDieStatline, twelveSideDieStatline, twentySideDieStatline, dieObjects } from "./data/dieObjects.js";
 
 /*Pull HTML elements into JS obects*/
 const rollOutputElem = document.querySelector('.roll-output');
@@ -7,7 +7,9 @@ const multiplierOutoutElem = document.querySelector(`.roll-multiplier-output`);
 const statlineToggleElem = document.querySelector('.statline-output-wrap');
 const d4hiddenStatlineElem = document.querySelector('.d4statline-hidden-output');
 const d6hiddenStatlineElem = document.querySelector('.d6statline-hidden-output');
+const d8hiddenStatlineElem = document.querySelector('.d8statline-hidden-output');
 const d10hiddenStatlineElem = document.querySelector('.d10statline-hidden-output');
+const d12hiddenStatlineElem = document.querySelector('.d12statline-hidden-output');
 const d20hiddenStatlineElem = document.querySelector('.d20statline-hidden-output');
 const hiddenStatlinesWrapElem = document.querySelector('.hidden-wrap');
 
@@ -61,7 +63,9 @@ function statlineOnClick() {
         /* Hide hidden outputs again */
         d4hiddenStatlineElem.innerHTML = '';
         d6hiddenStatlineElem.innerHTML = '';
+        d8hiddenStatlineElem.innerHTML = '';
         d10hiddenStatlineElem.innerHTML = '';
+        d12hiddenStatlineElem.innerHTML = '';
         d20hiddenStatlineElem.innerHTML = '';
         statlineToggleElem.innerHTML = 'View Die Statlines'; 
         hiddenStatlinesWrapElem.classList.remove('hidden-statlines-wrap');}
@@ -78,8 +82,16 @@ function resetStatlines() {
         sixSideDieStatline[String(i)] = 0;
     }
 
+    for (let i = 1; i < 9; i++) {
+        eightSideDieStatline[String(i)] = 0;
+    }
+
     for (let i = 1; i < 11; i++) {
         tenSideDieStatline[String(i)] = 0;
+    }
+
+    for (let i = 1; i < 13; i++) {
+        twelveSideDieStatline[String(i)] = 0;
     }
 
     for (let i = 1; i < 21; i++) {
@@ -88,7 +100,9 @@ function resetStatlines() {
 
     localStorage.setItem('D4', JSON.stringify(fourSideDieStatline));
     localStorage.setItem('D6', JSON.stringify(sixSideDieStatline));
+    localStorage.setItem('D8', JSON.stringify(eightSideDieStatline));
     localStorage.setItem('D10', JSON.stringify(tenSideDieStatline));
+    localStorage.setItem('D12', JSON.stringify(twelveSideDieStatline));
     localStorage.setItem('D20', JSON.stringify(twentySideDieStatline));
 
     /* If statline is closed, open it */

@@ -107,7 +107,7 @@ body {
     margin-right: 2vw;
     border-radius: 30px;
 }
-.d4statline-hidden-output, .d6statline-hidden-output, .d10statline-hidden-output, .d20statline-hidden-output{
+.d4statline-hidden-output, .d6statline-hidden-output, .d8statline-hidden-output, .d10statline-hidden-output, .d12statline-hidden-output, .d20statline-hidden-output{
     font-size: 2vw;
     text-align: left;
     letter-spacing: .06cap;
