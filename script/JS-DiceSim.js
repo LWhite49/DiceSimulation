@@ -1,5 +1,5 @@
 /* Import statline objects and dieObjects from dieObjects */
-import { fourSideDieStatline, sixSideDieStatline, eightSideDieStatline, tenSideDieStatline, twelveSideDieStatline, twentySideDieStatline, dieObjects } from "./data/dieObjects.js";
+import { fourSideDieStatline, sixSideDieStatline, eightSideDieStatline, tenSideDieStatline, twelveSideDieStatline, twentySideDieStatline, fiftySideDieStatline, dieObjects } from "./data/dieObjects.js";
 
 /*Pull HTML elements into JS obects*/
 const rollOutputElem = document.querySelector('.roll-output');
@@ -11,6 +11,7 @@ const d8hiddenStatlineElem = document.querySelector('.d8statline-hidden-output')
 const d10hiddenStatlineElem = document.querySelector('.d10statline-hidden-output');
 const d12hiddenStatlineElem = document.querySelector('.d12statline-hidden-output');
 const d20hiddenStatlineElem = document.querySelector('.d20statline-hidden-output');
+const d50hiddenStatlineElem = document.querySelector('.d50statline-hidden-output');
 const hiddenStatlinesWrapElem = document.querySelector('.hidden-wrap');
 
 
@@ -67,6 +68,7 @@ function statlineOnClick() {
         d10hiddenStatlineElem.innerHTML = '';
         d12hiddenStatlineElem.innerHTML = '';
         d20hiddenStatlineElem.innerHTML = '';
+        d50hiddenStatlineElem.innerHTML = '';
         statlineToggleElem.innerHTML = 'View Die Statlines'; 
         hiddenStatlinesWrapElem.classList.remove('hidden-statlines-wrap');}
     };
@@ -98,12 +100,17 @@ function resetStatlines() {
         twentySideDieStatline[String(i)] = 0;
     }
 
+    for (let i = 1; i < 51; i++) {
+        fiftySideDieStatline[String(i)] = 0;
+    }
+
     localStorage.setItem('D4', JSON.stringify(fourSideDieStatline));
     localStorage.setItem('D6', JSON.stringify(sixSideDieStatline));
     localStorage.setItem('D8', JSON.stringify(eightSideDieStatline));
     localStorage.setItem('D10', JSON.stringify(tenSideDieStatline));
     localStorage.setItem('D12', JSON.stringify(twelveSideDieStatline));
     localStorage.setItem('D20', JSON.stringify(twentySideDieStatline));
+    localStorage.setItem('D50', JSON.stringify(fiftySideDieStatline));
 
     /* If statline is closed, open it */
     if (statlineToggleElem.innerText === 'View Die Statlines') {

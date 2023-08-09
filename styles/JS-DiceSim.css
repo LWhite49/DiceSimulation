@@ -114,12 +114,13 @@ body {
     margin-right: 2vw;
     border-radius: 30px;
 }
-.d4statline-hidden-output, .d6statline-hidden-output, .d8statline-hidden-output, .d10statline-hidden-output, .d12statline-hidden-output, .d20statline-hidden-output{
+.d4statline-hidden-output, .d6statline-hidden-output, .d8statline-hidden-output, .d10statline-hidden-output, .d12statline-hidden-output, .d20statline-hidden-output, .d50statline-hidden-output{
     font-size: 2vw;
     text-align: left;
     letter-spacing: .06cap;
-    margin-top: 1.4vh;
-    margin-bottom: 1.4vh;
+    margin-top: .8vh;
+    margin-bottom: .8vh;
+    line-height: 6vh;
 }
 
 /* Dice flex styles */
@@ -198,4 +199,9 @@ body {
 .D20-image{
     width: 80%;
     height: 80%;
+}
+
+.D50-image{
+    width: 100%;
+    height: 100%;
 }
