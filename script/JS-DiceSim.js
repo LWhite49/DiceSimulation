@@ -85,10 +85,10 @@ function resetStatlines() {
         twentySideDieStatline[String(i)] = 0;
     }
 
-    localStorage.setItem('d4', JSON.stringify(fourSideDieStatline));
-    localStorage.setItem('d6', JSON.stringify(sixSideDieStatline));
-    localStorage.setItem('d10', JSON.stringify(tenSideDieStatline));
-    localStorage.setItem('d20', JSON.stringify(twentySideDieStatline));
+    localStorage.setItem('D4', JSON.stringify(fourSideDieStatline));
+    localStorage.setItem('D6', JSON.stringify(sixSideDieStatline));
+    localStorage.setItem('D10', JSON.stringify(tenSideDieStatline));
+    localStorage.setItem('D20', JSON.stringify(twentySideDieStatline));
 
     /* If statline is closed, open it */
     if (statlineToggleElem.innerText === 'View Die Statlines') {
@@ -155,11 +155,7 @@ function clearMultiplier() {
 
 /* GENERATE HTML AND APPLY LISTENERS */
 
-/* Pull die button elements to add listeners, as well as output element */
-const d4ButtonElem = document.querySelector(`.d4-button`);
-const d6ButtonElem = document.querySelector(`.d6-button`);
-const d10ButtonElem = document.querySelector(`.d10-button`);
-const d20ButtonElem = document.querySelector(`.d20-button`);
+/* Pull output element */
 const dieFlexOutputElem = document.querySelector(`.dice-flex`);
 
 /* Generate HTML using assembly string */
