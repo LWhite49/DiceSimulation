@@ -248,7 +248,7 @@ export const dieObjects = [
     {
         name: 'D4',
         sides: '4',
-        image: './images/Dice/redD4.png',
+        image: '../../images/Dice/redD4.png',
         statObject: fourSideDieStatline,
         statOutput: d4hiddenStatlineElem
     },
