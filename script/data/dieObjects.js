@@ -248,56 +248,56 @@ export const dieObjects = [
     {
         name: 'D4',
         sides: '4',
-        image: '../../images/Dice/redD4.png',
+        image: './images/Dice/redD4.png',
         statObject: fourSideDieStatline,
         statOutput: d4hiddenStatlineElem
     },
     {
         name: 'D6',
         sides: '6',
-        image: '../../images/Dice/blackD6.png',
+        image: './images/Dice/blackD6.png',
         statObject: sixSideDieStatline,
         statOutput: d6hiddenStatlineElem
     },
     {
         name: 'D8',
         sides: '8',
-        image: '../../images/Dice/blueD8.png',
+        image: './images/Dice/blueD8.png',
         statObject: eightSideDieStatline,
         statOutput: d8hiddenStatlineElem
     },
     {
         name: 'D10',
         sides: '10',
-        image: '../../images/Dice/whiteD10.png',
+        image: './images/Dice/whiteD10.png',
         statObject: tenSideDieStatline,
         statOutput: d10hiddenStatlineElem
     },
     {
         name: 'D12',
         sides: '12',
-        image: '../../images/Dice/blueD12.png',
+        image: './images/Dice/blueD12.png',
         statObject: twelveSideDieStatline,
         statOutput: d12hiddenStatlineElem
     },
     {
         name: 'D20',
         sides: '20',
-        image: '../../images/Dice/purpleD20.png',
+        image: './images/Dice/purpleD20.png',
         statObject: twentySideDieStatline,
         statOutput: d20hiddenStatlineElem
     },
     {
         name: 'D50',
         sides: '50',
-        image: '../../images/Dice/goldenD50.png',
+        image: './images/Dice/goldenD50.png',
         statObject: fiftySideDieStatline,
         statOutput: d50hiddenStatlineElem
     },
     {
         name: 'D100',
         sides: '100',
-        image: '../../images/Dice/greenD100.png',
+        image: './images/Dice/greenD100.png',
         statObject: oneHundredSideDieStatline,
         statOutput: d100hiddenStatlineElem
     }
