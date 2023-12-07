@@ -283,7 +283,7 @@ export const dieObjects = [
     {
         name: 'D20',
         sides: '20',
-        image: './images/Dice/purpleD20.png',
+        image: './images/Dice/greenD20.png',
         statObject: twentySideDieStatline,
         statOutput: d20hiddenStatlineElem
     },
